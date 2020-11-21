@@ -173,7 +173,7 @@ class _IconSelectorState extends State<IconSelector> {
       await DialogUtils.showSimpleAlertDialog(
         context,
         null,
-        loc.notPngWarning,
+        loc.notPngError,
         routeAppend: 'customIconPngError',
       );
       return;
