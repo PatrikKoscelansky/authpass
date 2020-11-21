@@ -68,6 +68,7 @@ class _CreateFileState extends State<CreateFile> with FutureTaskStateMixin {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 TextFormField(
+                  key: const Key('nameNewDB'),
                   controller: _databaseName,
                   decoration: InputDecoration(
                     labelText: loc.nameNewPasswordDatabase,
@@ -85,6 +86,7 @@ class _CreateFileState extends State<CreateFile> with FutureTaskStateMixin {
                 ),
                 const SizedBox(height: 16),
                 PasswordInputField(
+                  key: const Key('passwordNewDB'),
                   labelText: loc.inputMasterPasswordText,
                   controller: _password,
                   focusNode: _passwordFocus,
@@ -124,6 +126,7 @@ class _CreateFileState extends State<CreateFile> with FutureTaskStateMixin {
                           backgroundColor: Colors.red,
                         )
                       : PrimaryButton(
+                          key: const Key('createDB'),
                           large: false,
                           child: Text(loc.createDatabaseAction),
                           onPressed: _submitCallback(),

@@ -396,6 +396,7 @@ class _SelectFileWidgetState extends State<SelectFileWidget>
                     ),
                   ),
                   SelectFileAction(
+                    key: const Key('selectFileAction'),
                     icon: Icons.create_new_folder,
                     label: loc.createNewFile,
                     backgroundColor: theme.primaryColor.darken(),

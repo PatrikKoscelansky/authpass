@@ -550,6 +550,7 @@ class _PasswordListContentState extends State<PasswordListContent>
             : [
                 Builder(
                   builder: (context) => IconButton(
+                    key: const Key('saveEverything'),
                     icon: const Icon(Icons.save),
                     onPressed: () async {
                       final scaffold = Scaffold.of(context);
@@ -584,6 +585,7 @@ class _PasswordListContentState extends State<PasswordListContent>
 //          },
 //        ),
         PopupMenuButton<VoidCallback>(
+          key: const Key('appBarFilter'),
           icon: const Icon(FontAwesomeIcons.filter),
           onSelected: (value) async {
             value();
@@ -1229,6 +1231,7 @@ class NoPasswordsEmptyView extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   PrimaryButton(
+                    key: const Key('createFirstPasswd'),
                     child: Text(loc.emptyPasswordVaultButtonLabel),
                     onPressed: onPrimaryButtonPressed,
                   ),

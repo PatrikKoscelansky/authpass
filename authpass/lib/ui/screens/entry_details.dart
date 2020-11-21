@@ -88,12 +88,14 @@ class _EntryDetailsScreenState extends State<EntryDetailsScreen>
     final loc = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(vm.label?.takeUnlessBlank() ?? loc.noTitle),
+        title: Text(vm.label?.takeUnlessBlank() ?? loc.noTitle,
+            key: const Key('createdPasswdTitle')),
         actions: <Widget>[
           ...?!isDirty
               ? null
               : [
                   IconButton(
+                    key: const Key('saveNewPasswd'),
                     icon: const Icon(Icons.save),
                     onPressed: saveCallback,
                   ),
@@ -407,6 +409,7 @@ class _EntryDetailsState extends State<EntryDetails>
           top: false,
           left: false,
           child: Column(
+            key: const Key('entryDetailsColumn'),
             children: <Widget>[
               const SizedBox(height: 16),
               Row(
@@ -502,6 +505,7 @@ class _EntryDetailsState extends State<EntryDetails>
                   )
                   .expand((el) => [el, const SizedBox(height: 8)]),
               AddFieldButton(
+                key: const Key('addFieldButton'),
                 onAddField: (key) async {
                   final cf = commonFields[key];
                   if (cf == commonFields.otpAuth) {
@@ -575,6 +579,7 @@ class _EntryDetailsState extends State<EntryDetails>
               ),
               const SizedBox(height: 16),
               PrimaryButton(
+                key: const Key('primarySavePasswd'),
                 icon: const Icon(Icons.save),
                 child: Text(loc.saveButtonLabel),
                 onPressed: widget.onSavedPressed,
@@ -1331,6 +1336,7 @@ class _EntryFieldState extends State<EntryField>
 
   Widget _buildStringEntryFieldEditor() {
     return StringEntryFieldEditor(
+      key: const Key('stringEntryFieldEditorNewPasswd'),
       onSaved: (value) {
         final newValue =
             _isProtected ? ProtectedValue.fromString(value) : PlainValue(value);
@@ -1594,8 +1600,12 @@ class ObscuredEntryFieldEditor extends StatelessWidget {
               ),
               child: LinkButton(
                 child: Container(
-                  alignment: Alignment.bottomCenter,
-                  padding: const EdgeInsets.only(left: 12.0 + 24.0, bottom: 16),
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.only(
+                    left: 24.0,
+                    right: 24.0,
+                    // bottom: 16,
+                  ),
                   child: Text(
                     'Protected field. Click to reveal.',
                     style: TextStyle(
@@ -1604,7 +1614,7 @@ class ObscuredEntryFieldEditor extends StatelessWidget {
                       shadows: [
                         Shadow(
                             color: theme.isDarkTheme
-                                ? Colors.black45
+                                ? Colors.black87
                                 : Colors.white,
                             blurRadius: 5)
                       ],
@@ -1659,7 +1669,9 @@ class StringEntryFieldEditor extends StatelessWidget {
         focusNode: focusNode,
         decoration: InputDecoration(
           filled: true,
-          prefixIcon: commonField?.icon == null ? null : Icon(commonField.icon),
+          prefixIcon: commonField?.icon == null
+              ? null
+              : Icon(commonField.icon, key: const Key('newPasswordTitleIcon')),
           labelText: commonField?.displayName ?? fieldKey.key,
         ),
         keyboardType: commonField?.keyboardType,
